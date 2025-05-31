@@ -5,6 +5,7 @@ import com.ecommerce.shop.dto.PagedResponse;
 import com.ecommerce.shop.order.dto.OrderRequest;
 import com.ecommerce.shop.order.entity.Order;
 import com.ecommerce.shop.order.service.OrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/orders")
 @RequiredArgsConstructor
+@Tag(name = "Orders", description = "Order management APIs")
 public class OrderController {
 
     private final OrderService orderService;
