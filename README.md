@@ -1,5 +1,5 @@
 # E-Commerce Order Processing
-This is a Spring Boot-based backend service for an e-commerce platform supporting customer management, product inventory, order processing, and payment handling.
+This is a Spring Boot-based backend service for an e-commerce order service supporting customer management, product inventory, order processing, and payment handling.
 
 ## 🚀 Features
 - Customer and product management
