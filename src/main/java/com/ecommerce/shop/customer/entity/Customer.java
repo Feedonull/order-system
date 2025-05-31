@@ -1,6 +1,7 @@
 package com.ecommerce.shop.customer.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -8,10 +9,11 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "customers")
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String email;
