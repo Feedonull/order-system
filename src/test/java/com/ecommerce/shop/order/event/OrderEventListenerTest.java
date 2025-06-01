@@ -11,11 +11,11 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-class OrderEventHandlerTest {
+class OrderEventListenerTest {
 
     private EmailServiceFactory emailServiceFactory;
     private EmailService emailService;
-    private OrderEventHandler orderEventHandler;
+    private OrderEventListener orderEventListener;
 
     @BeforeEach
     void setup() {
@@ -24,16 +24,16 @@ class OrderEventHandlerTest {
 
         Mockito.when(emailServiceFactory.getEmailService(anyString())).thenReturn(emailService);
 
-        orderEventHandler = new OrderEventHandler(emailServiceFactory);
+        orderEventListener = new OrderEventListener(emailServiceFactory);
 
-        ReflectionTestUtils.setField(orderEventHandler, "emailProvider", "smtp");
+        ReflectionTestUtils.setField(orderEventListener, "emailProvider", "smtp");
     }
 
     @Test
-    void testOrderCreatedEvent_SendsEmail() {
+    void testOrderCreatedEvent_Log_And_SendsEmail() {
         OrderCreatedEvent event = new OrderCreatedEvent(100L, "test@example.com");
 
-        orderEventHandler.orderCreatedEvent(event);
+        orderEventListener.handleOrderCreated(event);
 
 
         verify(emailService, timeout(100000)).sendEmail(

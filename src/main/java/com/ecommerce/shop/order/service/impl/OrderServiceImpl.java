@@ -78,9 +78,7 @@ public class OrderServiceImpl implements OrderService {
         if(!paymentService.processPayment(totalAmount, PaymentMethod.CASH_ON_DELIVERY.name(),order)){
             throw new PaymentFailedException("Payment failed");
         }
-
         eventPublisher.publishEvent(new OrderCreatedEvent(order.getId(), customer.getEmail()));
-
         return order;
     }
 

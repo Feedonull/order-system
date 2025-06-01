@@ -12,15 +12,15 @@ import org.springframework.transaction.event.TransactionalEventListener;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class OrderEventHandler {
+public class OrderEventListener {
 
     @Value("${email.provider}")
     private String emailProvider;
     private final EmailServiceFactory emailServiceFactory;
 
     @Async
-    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void orderCreatedEvent(OrderCreatedEvent event) {
+    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    public void handleOrderCreated(OrderCreatedEvent event) {
         // Simulate sending email and logging
         try {
             // Simulate delay

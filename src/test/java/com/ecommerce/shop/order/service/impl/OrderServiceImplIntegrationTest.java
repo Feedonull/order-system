@@ -7,6 +7,7 @@ import com.ecommerce.shop.order.dto.OrderRequestItem;
 import com.ecommerce.shop.order.entity.Order;
 import com.ecommerce.shop.order.entity.OrderItem;
 import com.ecommerce.shop.order.enums.OrderStatus;
+import com.ecommerce.shop.order.event.OrderEventListener;
 import com.ecommerce.shop.order.repository.OrderItemRepository;
 import com.ecommerce.shop.order.repository.OrderRepository;
 import com.ecommerce.shop.product.entity.Product;
@@ -43,6 +44,7 @@ class OrderServiceImplIntegrationTest {
 
     private Customer testCustomer;
     private Product testProduct;
+    private OrderEventListener orderEventListener;
 
     @BeforeEach
     void setUp() {
@@ -85,6 +87,7 @@ class OrderServiceImplIntegrationTest {
         List<OrderItem> items = orderItemRepository.findAll();
         assertEquals(1, items.size());
         assertEquals(2, items.get(0).getQuantity());
+
     }
 
     @Test
